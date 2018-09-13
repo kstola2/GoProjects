@@ -16,6 +16,19 @@ type Server struct {
 func main() {
 }
 
+// func main() {
+// 	conn, err := net.Dial("udp", "0.0.0.0:00")
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+
+// 	localAddr := conn.LocalAddr()
+// 	conn.Close()
+
+// 	fmt.Println(localAddr.String())
+// }
+
 func getIP() string {
 	s, err := net.Dial("tcp", "www.google.com:80")
 	if err != nil {
@@ -24,6 +37,24 @@ func getIP() string {
 	locAddr := s.LocalAddr().String()
 	return locAddr[:strings.IndexByte(locAddr, ':')]
 }
+
+// func main() {
+// 	conn, err := net.Dial("udp", "0.0.0.0:00")
+// 	defer conn.Close()
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		return
+// 	}
+
+// 	localAddr := conn.LocalAddr()
+
+// 	host, port,err:=net.SplitHostPort(localAddr.String())
+// 	if err!=nil{
+// 		fmt.Println("Could not split host and port given the local address string",err)
+
+// 	}
+// 	fmt.Println(host, port, err)
+// }
 
 func initServer(port int) net.Listener {
 	portStr := ":" + strconv.Itoa(port)
